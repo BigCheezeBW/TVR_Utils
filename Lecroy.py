@@ -1,4 +1,3 @@
-# This tool imports a bunch of selected MGI EOL snapshots and uses only the last data point (called newpoint in the snapshot), and does basic Stat analysis and plots histograms with 3sigma lines
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -32,12 +31,10 @@ def lecroy_load_function():
     finalFrame = finalFrame.rename(columns={ind : newCols[ind] for ind in range(4)})
     print(finalFrame)
     #Return dataframe and used columns
-    return finalFrame,newCols,fileNames
+    return finalFrame,newCols
 
 def main():
-    finalFrame,cols,fileNames = lecroy_load_function()
-    sampleRate = 1/(finalFrame[cols[0]][1]-finalFrame[cols[0]][0])
-    print('Sample rate is: '+str(sampleRate/1000000)+' MS/s')
+    finalFrame,cols = lecroy_load_function()
     saveDir = fd.askdirectory()
     saveFile = saveDir + '/scopeOutput.csv'
     finalFrame.to_csv(saveFile,index=False)
