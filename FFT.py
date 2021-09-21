@@ -1,4 +1,5 @@
-# FFT is rough but works, try it in combination with Lecroy data and the Lecroy.py converter scriptimport numpy as np
+# FFT is rough but works, try it in combination with Lecroy data and the Lecroy.py converter script
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from tkinter import filedialog as fd
