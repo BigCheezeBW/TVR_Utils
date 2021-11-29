@@ -82,7 +82,9 @@ def main():
 
     data = single_load_function(cols,0)
 
-    plt.plot(data[cols[0]],data[cols[1:4]])
+    plt.plot(data[cols[0]],data[cols[1]],color='darkgreen')
+    plt.plot(data[cols[0]],data[cols[2]],color='forestgreen')
+    plt.plot(data[cols[0]],data[cols[3]],color='darkred')
     plt.xlabel("Time (s)")
     plt.figlegend(cols[1:4])
     plt.grid()
@@ -109,7 +111,7 @@ def main():
     freqLim = freqRe<=fund*20
 
     fig, ax = plt.subplots()
-    bars = plt.bar(freqRe[freqLim][::int(cycles)], XAvg[freqLim][::int(cycles)],width=20)
+    plt.bar(freqRe[freqLim][::int(cycles)], XAvg[freqLim][::int(cycles)],width=20,color=['darkgreen','forestgreen','darkred'])
     add_bar_labels(ax)
     plt.xlabel("Frequency")
     plt.ylabel("Amplitdue")

@@ -81,7 +81,7 @@ def main():
 
     bins = [50,70,90,110,130,150,170,190]
     fig, ax = plt.subplots()
-    plt.bar(bins,counts,color='g',width=20)
+    plt.bar(bins,counts,color=['darkgreen','forestgreen','darkred'],width=20)
     plt.xlabel("TC Temp "+col)
     plt.ylabel('Percentage')
     plt.title('Histogram of Temps')
@@ -94,7 +94,7 @@ def main():
 
     bins = [50,70,90,110,130,150,170,190]
     fig, ax = plt.subplots()
-    plt.bar(bins,counts,color='g',width=20)
+    plt.bar(bins,counts,color=['darkgreen','forestgreen','darkred'],width=20)
     plt.xlabel("TC Temp "+col)
     plt.ylabel('Percentage')
     plt.title('Histogram of Temps')
