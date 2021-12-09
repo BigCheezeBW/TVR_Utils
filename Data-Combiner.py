@@ -52,54 +52,13 @@ def load_function(cols, header, resample):
 
 def main():
 
-    cols=["TC0 - DUT1 SCI50",
-    "TC1 - DUT1 SCI60",
-    "TC2 - DUT1 SCO40",
-    "TC3 - DUT1 SWI50",
-    "TC4 - DUT1 SWI60",
-    "TC5 - DUT1 SWI70",
-    "TC6 - DUT1 SWO40",
-    "TC7 - DUT2 SCI50",
-    "TC8 - DUT2 SCI60",
-    "TC9 - DUT2 SCO40",
-    "TC10 - DUT2 SWI50",
-    "TC11 - DUT2 SWI60",
-    "TC12 - DUT2 SWI70",
-    "TC13 - DUT2 SWO40"]
+    cols=lambda x : True
+    data = load_function(cols,1,1)
 
-    data = load_function(cols,0,20)
+    saveDir = fd.askdirectory()
+    saveFile = saveDir + '/Combined.csv'
 
-
-    # This does calculates the |Vdq| amplitude for each unit and makes in a new column called ICM2 - Udq (V)
-    data['MAX - DUT1'] = data[cols[0:7]].max(axis=1)
-    data['MAX - DUT2'] = data[cols[7:14]].max(axis=1)
-    # This prints each datum as a hhistogram of units, IDK how to make all graphs pop up together
-
-    col = 'MAX - DUT1'
-    counts, bins = np.histogram(data[col],bins=[40,60,80,100,120,140,160,180,200])
-    counts = counts/data[col].size
-
-    bins = [50,70,90,110,130,150,170,190]
-    fig, ax = plt.subplots()
-    plt.bar(bins,counts,color=['darkgreen','forestgreen','darkred'],width=20)
-    plt.xlabel("TC Temp "+col)
-    plt.ylabel('Percentage')
-    plt.title('Histogram of Temps')
-    add_bar_labels(ax)
-    plt.show()
-
-    col = 'MAX - DUT2'
-    counts, bins = np.histogram(data[col],bins=[40,60,80,100,120,140,160,180,200])
-    counts = counts/data[col].size
-
-    bins = [50,70,90,110,130,150,170,190]
-    fig, ax = plt.subplots()
-    plt.bar(bins,counts,color=['darkgreen','forestgreen','darkred'],width=20)
-    plt.xlabel("TC Temp "+col)
-    plt.ylabel('Percentage')
-    plt.title('Histogram of Temps')
-    add_bar_labels(ax)
-    plt.show()
+    data.to_csv(saveFile,index=False)
 
 
 main()
